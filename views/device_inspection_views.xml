@@ -102,7 +102,7 @@
     <record id="action_device_inspection_type" model="ir.actions.act_window">
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first inspection type!
@@ -404,7 +404,7 @@
     <record id="action_device_inspection" model="ir.actions.act_window">
         <field name="name">Device Inspections</field>
         <field name="res_model">device.inspection</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="context">{'search_default_my_inspections': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
