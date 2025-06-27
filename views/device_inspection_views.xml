@@ -7,13 +7,13 @@
         <field name="name">device.inspection.type.tree</field>
         <field name="model">device.inspection.type</field>
         <field name="arch" type="xml">
-            <list string="Inspection Types" editable="bottom">
+            <tree string="Inspection Types" editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="description"/>
                 <field name="inspection_count"/>
                 <field name="active"/>
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -123,7 +123,7 @@
         <field name="name">device.inspection.tree</field>
         <field name="model">device.inspection</field>
         <field name="arch" type="xml">
-            <list string="Device Inspections" 
+            <tree string="Device Inspections" 
                   decoration-info="state == 'draft'"
                   decoration-warning="state == 'in_progress'"
                   decoration-success="state == 'approved'"
@@ -143,63 +143,42 @@
                        decoration-danger="state == 'rejected'"/>
                 <field name="line_count"/>
                 <field name="pass_rate" widget="percentage"/>
-            </list>
+            </tree>
         </field>
     </record>
 
-    <!-- Form View for Inspections -->
-    <record id="device_inspection_view_form" model="ir.ui.view">
-        <field name="name">device.inspection.form</field>
+    <!-- New Form View for Inspections -->
+    <record id="device_inspection_view_form_new" model="ir.ui.view">
+        <field name="name">device.inspection.form.new</field>
         <field name="model">device.inspection</field>
+        <field name="priority">20</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start_inspection" 
-                            string="Start Inspection" 
-                            type="object" 
-                            class="oe_highlight"
-                            invisible="state != 'draft'"/>
-                    <button name="action_complete_inspection" 
-                            string="Complete" 
-                            type="object" 
-                            class="oe_highlight"
-                            invisible="state != 'in_progress'"/>
-                    <button name="action_approve" 
-                            string="Approve" 
-                            type="object" 
-                            class="oe_highlight"
-                            invisible="state != 'completed'"/>
-                    <button name="action_reject" 
-                            string="Reject" 
-                            type="object"
+                    <button name="action_start_inspection" string="Start Inspection" type="object" 
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_complete_inspection" string="Complete" type="object" 
+                            class="oe_highlight" invisible="state != 'in_progress'"/>
+                    <button name="action_approve" string="Approve" type="object" 
+                            class="oe_highlight" invisible="state != 'completed'"/>
+                    <button name="action_reject" string="Reject" type="object"
                             invisible="state not in ['completed', 'approved']"/>
-                    <button name="action_reset_to_draft" 
-                            string="Reset to Draft" 
-                            type="object"
+                    <button name="action_reset_to_draft" string="Reset to Draft" type="object"
                             invisible="state == 'draft'"/>
-                            
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed,approved"/>
                 </header>
-                
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_images" 
-                                type="object" 
-                                class="oe_stat_button" 
-                                icon="fa-camera">
+                        <button name="action_view_images" type="object" class="oe_stat_button" icon="fa-camera">
                             <field name="image_count" widget="statinfo" string="Photos"/>
                         </button>
                     </div>
-                    
                     <div class="oe_title">
-                        <h1>
-                            <field name="name" readonly="1"/>
-                        </h1>
+                        <h1><field name="name" readonly="1"/></h1>
                     </div>
-                    
                     <group>
                         <group>
-                            <field name="property_id" options="{'no_create': True}"/>
+                            <field name="property_id"/>
                             <field name="inspection_type_id"/>
                             <field name="inspection_date"/>
                             <field name="inspector_id"/>
@@ -208,27 +187,18 @@
                             <field name="overall_condition"/>
                         </group>
                     </group>
-                    
                     <notebook>
-                        <page string="Inspection Items" name="inspection_items">
-                            <field name="inspection_line_ids" 
-                                   readonly="state in ['approved', 'rejected']">
-                                <list editable="bottom" 
-                                      decoration-success="result == 'pass'"
-                                      decoration-danger="result == 'fail'"
-                                      decoration-muted="result == 'na'">
+                        <page string="Inspection Items">
+                            <field name="inspection_line_ids" readonly="state in ['approved', 'rejected']">
+                                <tree editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
                                     <field name="description"/>
                                     <field name="condition"/>
-                                    <field name="result" widget="badge"/>
-                                    <field name="score"/>
-                                    <field name="score_percentage" widget="percentage"/>
+                                    <field name="result"/>
                                     <field name="notes"/>
-                                </list>
+                                </tree>
                             </field>
-                            
-                            <div class="oe_clear"/>
                             <group class="oe_subtotal_footer oe_right">
                                 <field name="line_count" string="Total Items"/>
                                 <field name="passed_count" string="Passed"/>
@@ -236,23 +206,18 @@
                                 <field name="pass_rate" widget="percentage" string="Pass Rate"/>
                             </group>
                         </page>
-                        
-                        <page string="Photos" name="photos">
-                            <field name="image_ids" mode="kanban" 
-                                   readonly="state in ['approved', 'rejected']"
-                                   context="{'default_image_type': 'inspection', 'default_inspection_id': id}"/>
+                        <page string="Photos">
+                            <field name="image_ids"/>
                         </page>
-                        
-                        <page string="Notes &amp; Issues" name="notes">
+                        <page string="Notes">
                             <group>
-                                <field name="notes" placeholder="General inspection notes and observations..."/>
-                                <field name="issues_found" placeholder="List of issues or problems identified..."/>
-                                <field name="recommendations" placeholder="Recommended actions based on inspection results..."/>
+                                <field name="notes" placeholder="General inspection notes..."/>
+                                <field name="issues_found" placeholder="Issues found..."/>
+                                <field name="recommendations" placeholder="Recommendations..."/>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
-                
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
                     <field name="activity_ids"/>
@@ -359,6 +324,7 @@
     <record id="action_device_inspection" model="ir.actions.act_window">
         <field name="name">Device Inspections</field>
         <field name="res_model">device.inspection</field>
+        <field name="view_mode">form,kanban,list</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -370,7 +336,7 @@
             </p>
         </field>
         <field name="views">
-            [(ref('device_inspection_view_form'), 'form'), 
+            [(ref('device_inspection_view_form_new'), 'form'), 
              (ref('device_inspection_view_kanban'), 'kanban'), 
              (ref('device_inspection_view_tree'), 'list')]
         </field>
