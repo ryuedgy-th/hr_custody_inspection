@@ -25,8 +25,8 @@
                 <field name="inspection_id"/>
             </xpath>
             
-            <!-- Add inspection filter -->
-            <xpath expr="//filter[@name='group_custody']" position="after">
+            <!-- Add inspection filter - using a safer approach -->
+            <xpath expr="//group" position="inside">
                 <filter string="Inspection" 
                         name="group_inspection" 
                         context="{'group_by': 'inspection_id'}"/>
