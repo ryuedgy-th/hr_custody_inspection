@@ -43,6 +43,7 @@ Technical Features:
         'views/device_inspection_views.xml',
         'views/custody_property_inspection_views.xml',
         'views/custody_image_inspection_views.xml',
+        'views/inspection_wizard_views.xml',
     ],
     'demo': [],
     'images': ['static/description/banner.jpg'],
