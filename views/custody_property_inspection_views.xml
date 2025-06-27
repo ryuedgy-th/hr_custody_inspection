@@ -102,15 +102,15 @@
         <field name="arch" type="xml">
             <!-- Add inspection data to Maintenance Information tab -->
             <xpath expr="//page[@name='maintenance_info']" position="inside">
-                <group string="Inspection History" attrs="{'invisible': [('inspection_count', '=', 0)]}">
-                    <field name="inspection_count" invisible="1"/>
+                <field name="inspection_count" invisible="1"/>
+                <group string="Inspection History" invisible="inspection_count == 0">
                     <field name="last_inspection_date"/>
                     <field name="last_inspection_state" widget="badge"/>
                     <button name="action_view_inspections" 
                             string="View Inspections" 
                             type="object" 
                             class="btn btn-primary"
-                            attrs="{'invisible': [('inspection_count', '=', 0)]}"/>
+                            invisible="inspection_count == 0"/>
                     <button name="action_create_inspection" 
                             string="Create Inspection" 
                             type="object" 
@@ -118,7 +118,7 @@
                 </group>
                 
                 <field name="inspection_ids" 
-                       attrs="{'invisible': [('inspection_count', '=', 0)]}" 
+                       invisible="inspection_count == 0" 
                        readonly="1">
                     <list decoration-info="state == 'draft'"
                           decoration-warning="state == 'in_progress'"
