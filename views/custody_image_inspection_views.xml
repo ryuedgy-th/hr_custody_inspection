@@ -4,7 +4,7 @@
     <record id="custody_image_view_form_inspection" model="ir.ui.view">
         <field name="name">custody.image.form.inspection</field>
         <field name="model">custody.image</field>
-        <field name="inherit_id" ref="hr_custody.custody_image_view_form"/>
+        <field name="inherit_id" ref="hr_custody.view_custody_image_form"/>
         <field name="arch" type="xml">
             <!-- Add inspection_id field after custody_id -->
             <xpath expr="//field[@name='custody_id']" position="after">
@@ -18,7 +18,7 @@
     <record id="custody_image_view_search_inspection" model="ir.ui.view">
         <field name="name">custody.image.search.inspection</field>
         <field name="model">custody.image</field>
-        <field name="inherit_id" ref="hr_custody.custody_image_view_search"/>
+        <field name="inherit_id" ref="hr_custody.view_custody_image_search"/>
         <field name="arch" type="xml">
             <!-- Add inspection_id to search fields -->
             <xpath expr="//field[@name='custody_id']" position="after">
