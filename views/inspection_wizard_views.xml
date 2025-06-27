@@ -37,4 +37,4 @@
         <field name="target">new</field>
         <field name="view_id" ref="inspection_wizard_view_form"/>
     </record>
-</odoo> 
+</odoo>
