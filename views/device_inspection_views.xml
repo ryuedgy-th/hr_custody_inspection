@@ -6,6 +6,7 @@
     <record id="device_inspection_type_view_tree" model="ir.ui.view">
         <field name="name">device.inspection.type.tree</field>
         <field name="model">device.inspection.type</field>
+        <field name="priority">1</field>
         <field name="arch" type="xml">
             <list string="Inspection Types" default_order="sequence">
                 <field name="sequence" widget="handle"/>
@@ -21,6 +22,7 @@
     <record id="device_inspection_type_view_form" model="ir.ui.view">
         <field name="name">device.inspection.type.form</field>
         <field name="model">device.inspection.type</field>
+        <field name="priority">10</field>
         <field name="arch" type="xml">
             <form string="Inspection Type">
                 <sheet>
@@ -59,6 +61,7 @@
     <record id="device_inspection_type_view_kanban" model="ir.ui.view">
         <field name="name">device.inspection.type.kanban</field>
         <field name="model">device.inspection.type</field>
+        <field name="priority">5</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="color"/>
@@ -109,11 +112,6 @@
                 Define different types of inspections such as "End of Term Check", 
                 "Renewal Check", or "Return Inspection".
             </p>
-        </field>
-        <field name="views">
-            [(ref('device_inspection_type_view_tree'), 'list'),
-             (ref('device_inspection_type_view_kanban'), 'kanban'), 
-             (ref('device_inspection_type_view_form'), 'form')]
         </field>
     </record>
 
