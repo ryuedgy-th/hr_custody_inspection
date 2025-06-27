@@ -207,7 +207,60 @@
                             </group>
                         </page>
                         <page string="Photos">
-                            <field name="image_ids"/>
+                            <div class="oe_button_box" style="margin-bottom: 10px;">
+                                <button name="action_upload_multiple_images" 
+                                        string="📷 Upload Multiple Images" 
+                                        type="object" 
+                                        class="btn-primary"
+                                        help="Upload multiple images at once"/>
+                                <button name="action_view_images" 
+                                        string="📋 View All Images" 
+                                        type="object" 
+                                        class="btn-secondary"
+                                        invisible="image_count == 0"
+                                        help="View all inspection images"/>
+                            </div>
+                            <field name="image_ids">
+                                <kanban class="o_kanban_mobile">
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <field name="image_128"/>
+                                    <field name="image_date"/>
+                                    <field name="image_type"/>
+                                    <field name="notes"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_card oe_kanban_global_click" style="max-width: 250px;">
+                                                <div class="o_kanban_image">
+                                                    <img t-att-src="kanban_image('custody.image', 'image_128', record.id.raw_value)" 
+                                                         class="o_image_128_max" 
+                                                         style="max-height: 150px; width: 100%; object-fit: cover;"/>
+                                                </div>
+                                                <div class="oe_kanban_details">
+                                                    <div class="o_kanban_record_top">
+                                                        <div class="o_kanban_record_headings">
+                                                            <strong><field name="name"/></strong>
+                                                        </div>
+                                                        <div class="o_kanban_record_top_right">
+                                                            <span class="badge badge-pill badge-info">
+                                                                <field name="image_type"/>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="o_kanban_record_body">
+                                                        <div class="text-muted">
+                                                            <i class="fa fa-clock-o"/> <field name="image_date"/>
+                                                        </div>
+                                                        <div t-if="record.notes.raw_value" class="mt-1">
+                                                            <field name="notes"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
                         </page>
                         <page string="Notes">
                             <group>

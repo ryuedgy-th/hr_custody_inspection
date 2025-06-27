@@ -244,6 +244,20 @@ class DeviceInspection(models.Model):
             'search_default_inspection_id': self.id,
         }
         return action
+    
+    def action_upload_multiple_images(self):
+        """Action to upload multiple images at once"""
+        self.ensure_one()
+        return {
+            'name': _('Upload Multiple Images'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'inspection.multi.images.upload',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_inspection_id': self.id,
+            }
+        }
 
     def name_get(self):
         """Custom name display"""
