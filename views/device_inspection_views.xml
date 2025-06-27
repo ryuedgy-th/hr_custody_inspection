@@ -259,7 +259,7 @@
                         <page string="Photos" name="photos">
                             <field name="image_ids" mode="kanban" 
                                    readonly="state in ['approved', 'rejected']"
-                                   context="{'default_image_type': 'inspection', 'default_inspection_id': active_id}">
+                                   context="{'default_image_type': 'inspection', 'default_inspection_id': id}">
                                 <kanban>
                                     <field name="name"/>
                                     <field name="image_128"/>
