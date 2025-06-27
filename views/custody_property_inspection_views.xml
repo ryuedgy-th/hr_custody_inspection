@@ -21,12 +21,12 @@
                 </button>
             </xpath>
             
-            <!-- Add Inspection button in Actions group -->
-            <xpath expr="//button[@name='action_view_maintenance_history']" position="before">
+            <!-- Add Create Inspection button to header -->
+            <xpath expr="//button[@name='action_record_maintenance']" position="after">
                 <button name="action_create_inspection" 
-                        string="📋 Inspection" 
+                        string="📋 Create Inspection" 
                         type="object" 
-                        class="btn btn-success btn-lg"
+                        class="btn-success"
                         help="Create new device inspection"/>
             </xpath>
             
