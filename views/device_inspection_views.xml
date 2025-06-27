@@ -420,7 +420,7 @@
     <!-- Menu Items -->
     <menuitem id="menu_device_inspection" 
               name="Inspections" 
-              parent="maintenance.menu_maintenance_title" 
+              parent="hr_custody.menu_hr_custody" 
               sequence="20"/>
               
     <menuitem id="menu_device_inspection_types" 
