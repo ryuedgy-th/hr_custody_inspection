@@ -62,7 +62,7 @@
                             <field name="inspector_id"/>
                             <field name="overall_condition"/>
                             <field name="state" widget="badge"/>
-                            <field name="pass_rate" widget="percentage"/>
+                            <field name="pass_rate"/>
                         </list>
                     </field>
                 </page>
@@ -106,7 +106,7 @@
                         <field name="inspection_date"/>
                         <field name="overall_condition"/>
                         <field name="state" widget="badge"/>
-                        <field name="pass_rate" widget="percentage"/>
+                        <field name="pass_rate"/>
                     </list>
                 </field>
             </xpath>

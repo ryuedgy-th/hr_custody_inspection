@@ -167,7 +167,7 @@
                        decoration-success="state == 'approved'"
                        decoration-danger="state == 'rejected'"/>
                 <field name="line_count"/>
-                <field name="pass_rate" widget="percentage"/>
+                <field name="pass_rate"/>
             </list>
         </field>
     </record>
@@ -228,7 +228,7 @@
                                 <field name="line_count" string="Total Items"/>
                                 <field name="passed_count" string="Passed"/>
                                 <field name="failed_count" string="Failed"/>
-                                <field name="pass_rate" widget="percentage" string="Pass Rate"/>
+                                <field name="pass_rate" string="Pass Rate %"/>
                             </group>
                         </page>
                         <page string="Photos">
@@ -359,7 +359,7 @@
                                 <field name="line_count" string="Total Items"/>
                                 <field name="passed_count" string="Passed"/>
                                 <field name="failed_count" string="Failed"/>
-                                <field name="pass_rate" widget="percentage" string="Pass Rate"/>
+                                <field name="pass_rate" string="Pass Rate %"/>
                             </group>
                         </page>
                         <page string="Photos">
@@ -428,7 +428,7 @@
                                     </div>
                                     <div class="col-6">
                                         <span>Pass Rate:</span><br/>
-                                        <field name="pass_rate" widget="percentage"/>
+                                        <field name="pass_rate"/>
                                     </div>
                                 </div>
                             </div>
