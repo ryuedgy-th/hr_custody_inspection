@@ -30,6 +30,7 @@
                 </group>
                 <footer>
                     <button string="Upload Images" name="action_upload_images" type="object" class="btn-primary"/>
+                    <button string="Debug Files" name="action_debug_files" type="object" class="btn-warning"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
