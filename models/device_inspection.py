@@ -175,12 +175,15 @@ class DeviceInspection(models.Model):
             record.passed_count = len(lines.filtered(lambda l: l.result == 'pass'))
             record.failed_count = len(lines.filtered(lambda l: l.result == 'fail'))
 
-    @api.depends('passed_count', 'line_count')
+    @api.depends('inspection_line_ids.result')
     def _compute_pass_rate(self):
         """Compute pass rate percentage"""
         for record in self:
-            if record.line_count > 0:
-                record.pass_rate = round((record.passed_count / record.line_count) * 100, 2)
+            lines = record.inspection_line_ids
+            if lines:
+                passed = len(lines.filtered(lambda l: l.result == 'pass'))
+                total = len(lines)
+                record.pass_rate = round((passed / total) * 100, 2) if total > 0 else 0.0
             else:
                 record.pass_rate = 0.0
 
