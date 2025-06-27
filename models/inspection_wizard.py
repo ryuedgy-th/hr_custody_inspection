@@ -46,7 +46,7 @@ class InspectionWizard(models.TransientModel):
         })
         
         # Return action to open the created inspection
-        form_view = self.env.ref('hr_custody_inspection.device_inspection_view_form_new')
+        form_view = self.env.ref('hr_custody_inspection.device_inspection_view_form_primary')
         
         return {
             'name': _('Device Inspection'),

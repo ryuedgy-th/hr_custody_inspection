@@ -147,11 +147,89 @@
         </field>
     </record>
 
-    <!-- New Form View for Inspections -->
+    <!-- Primary Form View for Inspections -->
+    <record id="device_inspection_view_form_primary" model="ir.ui.view">
+        <field name="name">device.inspection.form.primary</field>
+        <field name="model">device.inspection</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form string="Device Inspection">
+                <header>
+                    <button name="action_start_inspection" string="Start Inspection" type="object" 
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_complete_inspection" string="Complete" type="object" 
+                            class="oe_highlight" invisible="state != 'in_progress'"/>
+                    <button name="action_approve" string="Approve" type="object" 
+                            class="oe_highlight" invisible="state != 'completed'"/>
+                    <button name="action_reject" string="Reject" type="object"
+                            invisible="state not in ['completed', 'approved']"/>
+                    <button name="action_reset_to_draft" string="Reset to Draft" type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_images" type="object" class="oe_stat_button" icon="fa-camera">
+                            <field name="image_count" widget="statinfo" string="Photos"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="property_id"/>
+                            <field name="inspection_type_id"/>
+                            <field name="inspection_date"/>
+                            <field name="inspector_id"/>
+                        </group>
+                        <group>
+                            <field name="overall_condition"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Inspection Items">
+                            <field name="inspection_line_ids" readonly="state in ['approved', 'rejected']">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="condition"/>
+                                    <field name="result"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="line_count" string="Total Items"/>
+                                <field name="passed_count" string="Passed"/>
+                                <field name="failed_count" string="Failed"/>
+                                <field name="pass_rate" widget="percentage" string="Pass Rate"/>
+                            </group>
+                        </page>
+                        <page string="Photos">
+                            <field name="image_ids"/>
+                        </page>
+                        <page string="Notes">
+                            <group>
+                                <field name="notes" placeholder="General inspection notes..."/>
+                                <field name="issues_found" placeholder="Issues found..."/>
+                                <field name="recommendations" placeholder="Recommendations..."/>
+                            </group>
+                        </page>
+                        <page string="Discussion">
+                            <field name="message_ids" widget="mail_thread"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Keep the old form view as backup -->
     <record id="device_inspection_view_form_new" model="ir.ui.view">
         <field name="name">device.inspection.form.new</field>
         <field name="model">device.inspection</field>
-        <field name="priority">1</field>
+        <field name="priority">10</field>
         <field name="arch" type="xml">
             <form string="Device Inspection">
                 <header>
@@ -336,7 +414,7 @@
             </p>
         </field>
         <field name="views">
-            [(ref('device_inspection_view_form_new'), 'form'), 
+            [(ref('device_inspection_view_form_primary'), 'form'), 
              (ref('device_inspection_view_kanban'), 'kanban'), 
              (ref('device_inspection_view_tree'), 'list')]
         </field>
