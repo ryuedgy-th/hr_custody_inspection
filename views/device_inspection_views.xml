@@ -100,6 +100,7 @@
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
         <field name="view_mode">form,kanban,list</field>
+        <field name="view_id" ref="device_inspection_type_view_form"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first inspection type!
@@ -398,6 +399,7 @@
         <field name="name">Device Inspections</field>
         <field name="res_model">device.inspection</field>
         <field name="view_mode">form,kanban,list</field>
+        <field name="view_id" ref="device_inspection_view_form"/>
         <field name="context">{'search_default_my_inspections': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
