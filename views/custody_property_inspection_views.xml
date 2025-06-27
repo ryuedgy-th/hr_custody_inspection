@@ -48,8 +48,32 @@
         <field name="inherit_id" ref="hr_custody.custody_property_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Inspections" name="inspections" 
-                      invisible="inspection_count == 0">
+                <page string="Inspection History" name="inspections">
+                    <div class="oe_button_box" style="margin-bottom: 10px;">
+                        <button name="action_create_inspection" 
+                                string="📋 Create New Inspection" 
+                                type="object" 
+                                class="btn-primary"
+                                help="Create new device inspection"/>
+                        <button name="action_view_inspections" 
+                                string="📋 View All Inspections" 
+                                type="object" 
+                                class="btn-secondary"
+                                invisible="inspection_count == 0"
+                                help="View all inspections for this property"/>
+                    </div>
+                    
+                    <group string="Latest Inspection Summary" 
+                           invisible="last_inspection_date == False">
+                        <group>
+                            <field name="last_inspection_date"/>
+                            <field name="last_inspection_state" widget="badge"/>
+                        </group>
+                        <group>
+                            <field name="inspection_count" string="Total Inspections"/>
+                        </group>
+                    </group>
+                    
                     <field name="inspection_ids" readonly="1">
                         <list decoration-info="state == 'draft'"
                               decoration-warning="state == 'in_progress'"
@@ -65,50 +89,75 @@
                             <field name="pass_rate"/>
                         </list>
                     </field>
+                    
+                    <div class="alert alert-info" role="alert" invisible="inspection_count > 0">
+                        <p>
+                            <i class="fa fa-info-circle"/> 
+                            No inspections recorded yet. Click "Create New Inspection" to start tracking device condition.
+                        </p>
+                    </div>
                 </page>
             </xpath>
         </field>
     </record>
     
-    <!-- Add Inspection data to Simple Form View's Maintenance Tab -->
+    <!-- Add Inspection tab to Simple Form View -->
     <record id="custody_property_view_form_simple_inspection" model="ir.ui.view">
         <field name="name">custody.property.form.simple.inspection</field>
         <field name="model">custody.property</field>
         <field name="inherit_id" ref="hr_custody.custody_property_view_form_simple"/>
         <field name="arch" type="xml">
-            <!-- Add inspection data to Maintenance Information tab -->
-            <xpath expr="//page[@name='maintenance_info']" position="inside">
-                <field name="inspection_count" invisible="1"/>
-                <group string="Inspection History" invisible="inspection_count == 0">
-                    <field name="last_inspection_date"/>
-                    <field name="last_inspection_state" widget="badge"/>
-                    <button name="action_view_inspections" 
-                            string="View Inspections" 
-                            type="object" 
-                            class="btn btn-primary"
-                            invisible="inspection_count == 0"/>
-                    <button name="action_create_inspection" 
-                            string="Create Inspection" 
-                            type="object" 
-                            class="btn btn-secondary"/>
-                </group>
-                
-                <field name="inspection_ids" 
-                       invisible="inspection_count == 0" 
-                       readonly="1">
-                    <list decoration-info="state == 'draft'"
-                          decoration-warning="state == 'in_progress'"
-                          decoration-success="state == 'approved'"
-                          decoration-danger="state == 'rejected'"
-                          decoration-muted="state == 'completed'">
-                        <field name="name"/>
-                        <field name="inspection_type_id"/>
-                        <field name="inspection_date"/>
-                        <field name="overall_condition"/>
-                        <field name="state" widget="badge"/>
-                        <field name="pass_rate"/>
-                    </list>
-                </field>
+            <!-- Add Inspection History tab after maintenance_info -->
+            <xpath expr="//page[@name='maintenance_info']" position="after">
+                <page string="Inspection History" name="inspections">
+                    <div class="oe_button_box" style="margin-bottom: 10px;">
+                        <button name="action_create_inspection" 
+                                string="📋 Create New Inspection" 
+                                type="object" 
+                                class="btn-primary"
+                                help="Create new device inspection"/>
+                        <button name="action_view_inspections" 
+                                string="📋 View All Inspections" 
+                                type="object" 
+                                class="btn-secondary"
+                                invisible="inspection_count == 0"
+                                help="View all inspections for this property"/>
+                    </div>
+                    
+                    <group string="Latest Inspection Summary" 
+                           invisible="last_inspection_date == False">
+                        <group>
+                            <field name="last_inspection_date"/>
+                            <field name="last_inspection_state" widget="badge"/>
+                        </group>
+                        <group>
+                            <field name="inspection_count" string="Total Inspections"/>
+                        </group>
+                    </group>
+                    
+                    <field name="inspection_ids" readonly="1">
+                        <list decoration-info="state == 'draft'"
+                              decoration-warning="state == 'in_progress'"
+                              decoration-success="state == 'approved'"
+                              decoration-danger="state == 'rejected'"
+                              decoration-muted="state == 'completed'">
+                            <field name="name"/>
+                            <field name="inspection_type_id"/>
+                            <field name="inspection_date"/>
+                            <field name="inspector_id"/>
+                            <field name="overall_condition"/>
+                            <field name="state" widget="badge"/>
+                            <field name="pass_rate"/>
+                        </list>
+                    </field>
+                    
+                    <div class="alert alert-info" role="alert" invisible="inspection_count > 0">
+                        <p>
+                            <i class="fa fa-info-circle"/> 
+                            No inspections recorded yet. Click "Create New Inspection" to start tracking device condition.
+                        </p>
+                    </div>
+                </page>
             </xpath>
         </field>
     </record>
