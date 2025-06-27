@@ -50,11 +50,6 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Inspection History" name="inspections">
                     <div class="oe_button_box" style="margin-bottom: 10px;">
-                        <button name="action_create_inspection" 
-                                string="📋 Create New Inspection" 
-                                type="object" 
-                                class="btn-primary"
-                                help="Create new device inspection"/>
                         <button name="action_view_inspections" 
                                 string="📋 View All Inspections" 
                                 type="object" 
@@ -93,7 +88,7 @@
                     <div class="alert alert-info" role="alert" invisible="inspection_count > 0">
                         <p>
                             <i class="fa fa-info-circle"/> 
-                            No inspections recorded yet. Click "Create New Inspection" to start tracking device condition.
+                            No inspections recorded yet. Use the main Inspections menu to create new inspections.
                         </p>
                     </div>
                 </page>
@@ -111,11 +106,6 @@
             <xpath expr="//page[@name='maintenance_info']" position="after">
                 <page string="Inspection History" name="inspections">
                     <div class="oe_button_box" style="margin-bottom: 10px;">
-                        <button name="action_create_inspection" 
-                                string="📋 Create New Inspection" 
-                                type="object" 
-                                class="btn-primary"
-                                help="Create new device inspection"/>
                         <button name="action_view_inspections" 
                                 string="📋 View All Inspections" 
                                 type="object" 
@@ -154,7 +144,7 @@
                     <div class="alert alert-info" role="alert" invisible="inspection_count > 0">
                         <p>
                             <i class="fa fa-info-circle"/> 
-                            No inspections recorded yet. Click "Create New Inspection" to start tracking device condition.
+                            No inspections recorded yet. Use the main Inspections menu to create new inspections.
                         </p>
                     </div>
                 </page>
