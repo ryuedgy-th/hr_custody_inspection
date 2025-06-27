@@ -95,31 +95,12 @@
         </field>
     </record>
 
-    <!-- Search View for Inspection Types -->
-    <record id="device_inspection_type_view_search" model="ir.ui.view">
-        <field name="name">device.inspection.type.search</field>
-        <field name="model">device.inspection.type</field>
-        <field name="arch" type="xml">
-            <search string="Inspection Types">
-                <field name="name"/>
-                <field name="description"/>
-                
-                <filter string="Active" name="active" domain="[('active', '=', True)]" default="1"/>
-                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
-                
-                <group expand="0" string="Group By">
-                    <filter string="Status" name="group_active" context="{'group_by': 'active'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
-
     <!-- Actions for Inspection Types -->
     <record id="action_device_inspection_type" model="ir.actions.act_window">
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
         <field name="view_mode">list,kanban,form</field>
-        <field name="context">{'search_default_active': 1}</field>
+        <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first inspection type!
@@ -134,7 +115,6 @@
              (ref('device_inspection_type_view_kanban'), 'kanban'), 
              (ref('device_inspection_type_view_form'), 'form')]
         </field>
-        <field name="search_view_id" ref="device_inspection_type_view_search"/>
     </record>
 
     <!-- Device Inspection Views -->
