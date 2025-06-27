@@ -152,7 +152,7 @@
         <field name="name">device.inspection.form</field>
         <field name="model">device.inspection</field>
         <field name="arch" type="xml">
-            <form string="Device Inspection">
+            <form>
                 <header>
                     <button name="action_start_inspection" 
                             string="Start Inspection" 
@@ -226,25 +226,6 @@
                                     <field name="score_percentage" widget="percentage"/>
                                     <field name="notes"/>
                                 </list>
-                                <form>
-                                    <group>
-                                        <group>
-                                            <field name="name"/>
-                                            <field name="description"/>
-                                            <field name="condition"/>
-                                            <field name="result"/>
-                                        </group>
-                                        <group>
-                                            <field name="score"/>
-                                            <field name="max_score"/>
-                                            <field name="score_percentage" widget="percentage"/>
-                                        </group>
-                                    </group>
-                                    <group>
-                                        <field name="notes" placeholder="Additional notes for this item..."/>
-                                        <field name="issues" placeholder="Specific issues found with this item..."/>
-                                    </group>
-                                </form>
                             </field>
                             
                             <div class="oe_clear"/>
@@ -259,31 +240,7 @@
                         <page string="Photos" name="photos">
                             <field name="image_ids" mode="kanban" 
                                    readonly="state in ['approved', 'rejected']"
-                                   context="{'default_image_type': 'inspection', 'default_inspection_id': id}">
-                                <kanban>
-                                    <field name="name"/>
-                                    <field name="image_128"/>
-                                    <field name="image_date"/>
-                                    <templates>
-                                        <t t-name="kanban-box">
-                                            <div class="oe_kanban_card oe_kanban_global_click o_kanban_attachment">
-                                                <div class="o_kanban_image">
-                                                    <img t-att-src="kanban_image('custody.image', 'image_128', record.id.raw_value)" 
-                                                         alt="Inspection Photo" class="o_image_64_cover"/>
-                                                </div>
-                                                <div class="oe_kanban_details">
-                                                    <div class="o_kanban_record_title">
-                                                        <field name="name"/>
-                                                    </div>
-                                                    <div>
-                                                        <field name="image_date" widget="date"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </t>
-                                    </templates>
-                                </kanban>
-                            </field>
+                                   context="{'default_image_type': 'inspection', 'default_inspection_id': id}"/>
                         </page>
                         
                         <page string="Notes &amp; Issues" name="notes">
