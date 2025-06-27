@@ -238,8 +238,14 @@
                                         type="object" 
                                         class="btn-primary"
                                         help="Upload multiple images at once"/>
+                                <button name="action_view_images" 
+                                        string="📋 View All Images" 
+                                        type="object" 
+                                        class="btn-secondary"
+                                        invisible="image_count == 0"
+                                        help="View all inspection images"/>
                             </div>
-                            <field name="image_ids">
+                            <field name="image_ids" options="{'no_create': True, 'no_create_edit': True}">
                                 <kanban class="o_kanban_mobile">
                                     <field name="id"/>
                                     <field name="name"/>
