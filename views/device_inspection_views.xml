@@ -6,7 +6,6 @@
     <record id="device_inspection_type_view_tree" model="ir.ui.view">
         <field name="name">device.inspection.type.tree</field>
         <field name="model">device.inspection.type</field>
-        <field name="type">list</field>
         <field name="arch" type="xml">
             <list string="Inspection Types" editable="bottom">
                 <field name="sequence" widget="handle"/>
@@ -22,7 +21,6 @@
     <record id="device_inspection_type_view_form" model="ir.ui.view">
         <field name="name">device.inspection.type.form</field>
         <field name="model">device.inspection.type</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Inspection Type">
                 <sheet>
@@ -61,7 +59,6 @@
     <record id="device_inspection_type_view_kanban" model="ir.ui.view">
         <field name="name">device.inspection.type.kanban</field>
         <field name="model">device.inspection.type</field>
-        <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="color"/>
@@ -120,7 +117,6 @@
     <record id="device_inspection_view_tree" model="ir.ui.view">
         <field name="name">device.inspection.tree</field>
         <field name="model">device.inspection</field>
-        <field name="type">list</field>
         <field name="arch" type="xml">
             <list string="Device Inspections" 
                   decoration-info="state == 'draft'"
@@ -150,7 +146,6 @@
     <record id="device_inspection_view_form" model="ir.ui.view">
         <field name="name">device.inspection.form</field>
         <field name="model">device.inspection</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Device Inspection">
                 <header>
@@ -309,7 +304,6 @@
     <record id="device_inspection_view_kanban" model="ir.ui.view">
         <field name="name">device.inspection.kanban</field>
         <field name="model">device.inspection</field>
-        <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban default_group_by="state" class="o_kanban_small_column">
                 <field name="state"/>
@@ -366,7 +360,6 @@
     <record id="device_inspection_view_search" model="ir.ui.view">
         <field name="name">device.inspection.search</field>
         <field name="model">device.inspection</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Device Inspections">
                 <field name="name"/>
