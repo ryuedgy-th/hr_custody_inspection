@@ -36,7 +36,7 @@
                     </div>
                     
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" 
-                            attrs="{'invisible': [('active', '=', True)]}"/>
+                            invisible="active"/>
                     
                     <group>
                         <group>
@@ -158,25 +158,25 @@
                             string="Start Inspection" 
                             type="object" 
                             class="oe_highlight"
-                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            invisible="state != 'draft'"/>
                     <button name="action_complete_inspection" 
                             string="Complete" 
                             type="object" 
                             class="oe_highlight"
-                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                            invisible="state != 'in_progress'"/>
                     <button name="action_approve" 
                             string="Approve" 
                             type="object" 
                             class="oe_highlight"
-                            attrs="{'invisible': [('state', '!=', 'completed')]}"/>
+                            invisible="state != 'completed'"/>
                     <button name="action_reject" 
                             string="Reject" 
                             type="object"
-                            attrs="{'invisible': [('state', 'not in', ['completed', 'approved'])]}"/>
+                            invisible="state not in ['completed', 'approved']"/>
                     <button name="action_reset_to_draft" 
                             string="Reset to Draft" 
                             type="object"
-                            attrs="{'invisible': [('state', '==', 'draft')]}"/>
+                            invisible="state == 'draft'"/>
                             
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed,approved"/>
                 </header>
@@ -212,7 +212,7 @@
                     <notebook>
                         <page string="Inspection Items" name="inspection_items">
                             <field name="inspection_line_ids" 
-                                   attrs="{'readonly': [('state', 'in', ['approved', 'rejected'])]}">
+                                   readonly="state in ['approved', 'rejected']">
                                 <list editable="bottom" 
                                       decoration-success="result == 'pass'"
                                       decoration-danger="result == 'fail'"
@@ -258,7 +258,7 @@
                         
                         <page string="Photos" name="photos">
                             <field name="image_ids" mode="kanban" 
-                                   attrs="{'readonly': [('state', 'in', ['approved', 'rejected'])]}"
+                                   readonly="state in ['approved', 'rejected']"
                                    context="{'default_image_type': 'inspection', 'default_inspection_id': active_id}">
                                 <kanban>
                                     <field name="name"/>

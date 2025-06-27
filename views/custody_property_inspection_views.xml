@@ -33,7 +33,7 @@
             <!-- Add Last Inspection info in a new group -->
             <xpath expr="//group[@string='Maintenance Notes']" position="after">
                 <group string="Last Inspection" 
-                       attrs="{'invisible': [('last_inspection_date', '=', False)]}">
+                       invisible="last_inspection_date == False">
                     <field name="last_inspection_date"/>
                     <field name="last_inspection_state" widget="badge"/>
                 </group>
@@ -49,7 +49,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Inspections" name="inspections" 
-                      attrs="{'invisible': [('inspection_count', '=', 0)]}">
+                      invisible="inspection_count == 0">
                     <field name="inspection_ids" readonly="1">
                         <list decoration-info="state == 'draft'"
                               decoration-warning="state == 'in_progress'"

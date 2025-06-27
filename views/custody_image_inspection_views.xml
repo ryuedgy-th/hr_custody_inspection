@@ -9,7 +9,7 @@
             <!-- Add inspection_id field after custody_id -->
             <xpath expr="//field[@name='custody_id']" position="after">
                 <field name="inspection_id" 
-                       attrs="{'invisible': [('custody_id', '!=', False)]}"/>
+                       invisible="custody_id != False"/>
             </xpath>
         </field>
     </record>
