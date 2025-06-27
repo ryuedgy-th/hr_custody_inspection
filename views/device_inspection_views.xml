@@ -151,9 +151,9 @@
     <record id="device_inspection_view_form_new" model="ir.ui.view">
         <field name="name">device.inspection.form.new</field>
         <field name="model">device.inspection</field>
-        <field name="priority">20</field>
+        <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Device Inspection">
                 <header>
                     <button name="action_start_inspection" string="Start Inspection" type="object" 
                             class="oe_highlight" invisible="state != 'draft'"/>
@@ -219,9 +219,9 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
         </field>
