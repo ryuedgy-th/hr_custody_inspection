@@ -8,3 +8,6 @@ access_device_inspection_custody_manager,device.inspection.custody.manager,model
 access_device_inspection_line_custody_user,device.inspection.line.custody.user,model_device_inspection_line,hr_custody.group_custody_user,1,1,1,1
 access_device_inspection_line_custody_officer,device.inspection.line.custody.officer,model_device_inspection_line,hr_custody.group_custody_officer,1,1,1,1
 access_device_inspection_line_custody_manager,device.inspection.line.custody.manager,model_device_inspection_line,hr_custody.group_custody_manager,1,1,1,1
+access_inspection_wizard_custody_user,inspection.wizard.custody.user,model_inspection_wizard,hr_custody.group_custody_user,1,1,1,0
+access_inspection_wizard_custody_officer,inspection.wizard.custody.officer,model_inspection_wizard,hr_custody.group_custody_officer,1,1,1,0
+access_inspection_wizard_custody_manager,inspection.wizard.custody.manager,model_inspection_wizard,hr_custody.group_custody_manager,1,1,1,1
