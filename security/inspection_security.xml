@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Device Inspection Security Groups -->
+    <!-- We reuse the custody security groups from hr_custody module -->
+    
+    <!-- Record Rules for Device Inspection -->
+    <record id="device_inspection_rule_user" model="ir.rule">
+        <field name="name">Device Inspection: User Access</field>
+        <field name="model_id" ref="model_device_inspection"/>
+        <field name="domain_force">[('inspector_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="device_inspection_rule_officer" model="ir.rule">
+        <field name="name">Device Inspection: Officer Access</field>
+        <field name="model_id" ref="model_device_inspection"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_officer'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="device_inspection_rule_manager" model="ir.rule">
+        <field name="name">Device Inspection: Manager Access</field>
+        <field name="model_id" ref="model_device_inspection"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <!-- Record Rules for Device Inspection Lines -->
+    <record id="device_inspection_line_rule_user" model="ir.rule">
+        <field name="name">Device Inspection Line: User Access</field>
+        <field name="model_id" ref="model_device_inspection_line"/>
+        <field name="domain_force">[('inspection_id.inspector_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="device_inspection_line_rule_officer" model="ir.rule">
+        <field name="name">Device Inspection Line: Officer Access</field>
+        <field name="model_id" ref="model_device_inspection_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_officer'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+    <record id="device_inspection_line_rule_manager" model="ir.rule">
+        <field name="name">Device Inspection Line: Manager Access</field>
+        <field name="model_id" ref="model_device_inspection_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_custody.group_custody_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

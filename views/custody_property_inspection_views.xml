@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Custody Property Form View with Inspection Features -->
+    <record id="custody_property_view_form_inspection" model="ir.ui.view">
+        <field name="name">custody.property.form.inspection</field>
+        <field name="model">custody.property</field>
+        <field name="inherit_id" ref="hr_custody.custody_property_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add Inspection stat button -->
+            <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <button name="action_view_inspections" 
+                        type="object" 
+                        class="oe_stat_button" 
+                        icon="fa-clipboard-list">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="inspection_count"/>
+                        </span>
+                        <span class="o_stat_text">Inspections</span>
+                    </div>
+                </button>
+            </xpath>
+            
+            <!-- Add Inspection button in Actions group -->
+            <xpath expr="//button[@name='action_view_maintenance_history']" position="before">
+                <button name="action_create_inspection" 
+                        string="📋 Inspection" 
+                        type="object" 
+                        class="btn btn-success btn-lg"
+                        help="Create new device inspection"/>
+            </xpath>
+            
+            <!-- Add Last Inspection info in a new group -->
+            <xpath expr="//group[@string='Maintenance Notes']" position="after">
+                <group string="Last Inspection" 
+                       attrs="{'invisible': [('last_inspection_date', '=', False)]}">
+                    <field name="last_inspection_date"/>
+                    <field name="last_inspection_state" widget="badge"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add Inspections tab to Property form -->
+    <record id="custody_property_view_form_inspection_tab" model="ir.ui.view">
+        <field name="name">custody.property.form.inspection.tab</field>
+        <field name="model">custody.property</field>
+        <field name="inherit_id" ref="hr_custody.custody_property_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Inspections" name="inspections" 
+                      attrs="{'invisible': [('inspection_count', '=', 0)]}">
+                    <field name="inspection_ids" readonly="1">
+                        <tree decoration-info="state == 'draft'"
+                              decoration-warning="state == 'in_progress'"
+                              decoration-success="state == 'approved'"
+                              decoration-danger="state == 'rejected'"
+                              decoration-muted="state == 'completed'">
+                            <field name="name"/>
+                            <field name="inspection_type_id"/>
+                            <field name="inspection_date"/>
+                            <field name="inspector_id"/>
+                            <field name="overall_condition"/>
+                            <field name="state" widget="badge"/>
+                            <field name="pass_rate" widget="percentage"/>
+                        </tree>
+                        <form>
+                            <sheet>
+                                <div class="oe_title">
+                                    <h1>
+                                        <field name="name" readonly="1"/>
+                                    </h1>
+                                </div>
+                                <group>
+                                    <group>
+                                        <field name="inspection_type_id"/>
+                                        <field name="inspection_date"/>
+                                        <field name="inspector_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="state"/>
+                                        <field name="overall_condition"/>
+                                        <field name="pass_rate" widget="percentage"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

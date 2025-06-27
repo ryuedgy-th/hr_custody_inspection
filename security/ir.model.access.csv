@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_device_inspection_type_custody_user,device.inspection.type.custody.user,model_device_inspection_type,hr_custody.group_custody_user,1,0,0,0
+access_device_inspection_type_custody_officer,device.inspection.type.custody.officer,model_device_inspection_type,hr_custody.group_custody_officer,1,1,1,0
+access_device_inspection_type_custody_manager,device.inspection.type.custody.manager,model_device_inspection_type,hr_custody.group_custody_manager,1,1,1,1
+access_device_inspection_custody_user,device.inspection.custody.user,model_device_inspection,hr_custody.group_custody_user,1,1,1,0
+access_device_inspection_custody_officer,device.inspection.custody.officer,model_device_inspection,hr_custody.group_custody_officer,1,1,1,0
+access_device_inspection_custody_manager,device.inspection.custody.manager,model_device_inspection,hr_custody.group_custody_manager,1,1,1,1
+access_device_inspection_line_custody_user,device.inspection.line.custody.user,model_device_inspection_line,hr_custody.group_custody_user,1,1,1,1
+access_device_inspection_line_custody_officer,device.inspection.line.custody.officer,model_device_inspection_line,hr_custody.group_custody_officer,1,1,1,1
+access_device_inspection_line_custody_manager,device.inspection.line.custody.manager,model_device_inspection_line,hr_custody.group_custody_manager,1,1,1,1

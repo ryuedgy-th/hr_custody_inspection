@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Custody Image Form View with Inspection Field -->
+    <record id="custody_image_view_form_inspection" model="ir.ui.view">
+        <field name="name">custody.image.form.inspection</field>
+        <field name="model">custody.image</field>
+        <field name="inherit_id" ref="hr_custody.custody_image_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add inspection_id field after custody_id -->
+            <xpath expr="//field[@name='custody_id']" position="after">
+                <field name="inspection_id" 
+                       attrs="{'invisible': [('custody_id', '!=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Search View to include inspection search -->
+    <record id="custody_image_view_search_inspection" model="ir.ui.view">
+        <field name="name">custody.image.search.inspection</field>
+        <field name="model">custody.image</field>
+        <field name="inherit_id" ref="hr_custody.custody_image_view_search"/>
+        <field name="arch" type="xml">
+            <!-- Add inspection_id to search fields -->
+            <xpath expr="//field[@name='custody_id']" position="after">
+                <field name="inspection_id"/>
+            </xpath>
+            
+            <!-- Add inspection filter -->
+            <xpath expr="//filter[@name='group_custody']" position="after">
+                <filter string="Inspection" 
+                        name="group_inspection" 
+                        context="{'group_by': 'inspection_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
