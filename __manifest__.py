@@ -31,7 +31,7 @@ Technical Features:
     'author': 'Your Company',
     'website': 'https://www.yourcompany.com',
     'category': 'Human Resources',
-    'depends': ['hr_custody', 'maintenance'],
+    'depends': ['hr_custody'],
     'data': [
         # Security files first
         'security/inspection_security.xml',
