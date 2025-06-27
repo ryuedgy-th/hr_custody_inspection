@@ -137,6 +137,7 @@ class DeviceInspection(models.Model):
     pass_rate = fields.Float(
         string='Pass Rate (%)',
         compute='_compute_pass_rate',
+        digits=(5, 2),
         help="Percentage of items that passed inspection"
     )
     
@@ -179,7 +180,7 @@ class DeviceInspection(models.Model):
         """Compute pass rate percentage"""
         for record in self:
             if record.line_count > 0:
-                record.pass_rate = (record.passed_count / record.line_count) * 100
+                record.pass_rate = round((record.passed_count / record.line_count) * 100, 2)
             else:
                 record.pass_rate = 0.0
 
