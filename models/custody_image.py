@@ -16,9 +16,18 @@ class CustodyImage(models.Model):
     )
 
     # Override image_type to add inspection option
-    image_type = fields.Selection(
-        selection_add=[('inspection', 'Inspection')],
-        ondelete={'inspection': 'cascade'}
+    image_type = fields.Selection([
+        ('checkout', 'Checkout'),
+        ('return', 'Return'),
+        ('maintenance', 'Maintenance'),
+        ('inspection', 'Inspection'),
+        ('other', 'Other')
+    ], 
+        string='Image Type',
+        required=True,
+        default='other',
+        index=True,
+        help='Type of image - used for filtering and organizing'
     )
 
     @api.constrains('custody_id', 'inspection_id')

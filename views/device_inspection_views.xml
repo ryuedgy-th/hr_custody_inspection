@@ -6,14 +6,15 @@
     <record id="device_inspection_type_view_tree" model="ir.ui.view">
         <field name="name">device.inspection.type.tree</field>
         <field name="model">device.inspection.type</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree string="Inspection Types" editable="bottom">
+            <list string="Inspection Types" editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="description"/>
                 <field name="inspection_count"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -21,6 +22,7 @@
     <record id="device_inspection_type_view_form" model="ir.ui.view">
         <field name="name">device.inspection.type.form</field>
         <field name="model">device.inspection.type</field>
+        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Inspection Type">
                 <sheet>
@@ -59,6 +61,7 @@
     <record id="device_inspection_type_view_kanban" model="ir.ui.view">
         <field name="name">device.inspection.type.kanban</field>
         <field name="model">device.inspection.type</field>
+        <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="color"/>
@@ -117,8 +120,9 @@
     <record id="device_inspection_view_tree" model="ir.ui.view">
         <field name="name">device.inspection.tree</field>
         <field name="model">device.inspection</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
-            <tree string="Device Inspections" 
+            <list string="Device Inspections" 
                   decoration-info="state == 'draft'"
                   decoration-warning="state == 'in_progress'"
                   decoration-success="state == 'approved'"
@@ -138,7 +142,7 @@
                        decoration-danger="state == 'rejected'"/>
                 <field name="line_count"/>
                 <field name="pass_rate" widget="percentage"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -146,6 +150,7 @@
     <record id="device_inspection_view_form" model="ir.ui.view">
         <field name="name">device.inspection.form</field>
         <field name="model">device.inspection</field>
+        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Device Inspection">
                 <header>
@@ -208,7 +213,7 @@
                         <page string="Inspection Items" name="inspection_items">
                             <field name="inspection_line_ids" 
                                    attrs="{'readonly': [('state', 'in', ['approved', 'rejected'])]}">
-                                <tree editable="bottom" 
+                                <list editable="bottom" 
                                       decoration-success="result == 'pass'"
                                       decoration-danger="result == 'fail'"
                                       decoration-muted="result == 'na'">
@@ -220,7 +225,7 @@
                                     <field name="score"/>
                                     <field name="score_percentage" widget="percentage"/>
                                     <field name="notes"/>
-                                </tree>
+                                </list>
                                 <form>
                                     <group>
                                         <group>
@@ -304,6 +309,7 @@
     <record id="device_inspection_view_kanban" model="ir.ui.view">
         <field name="name">device.inspection.kanban</field>
         <field name="model">device.inspection</field>
+        <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban default_group_by="state" class="o_kanban_small_column">
                 <field name="state"/>
@@ -360,6 +366,7 @@
     <record id="device_inspection_view_search" model="ir.ui.view">
         <field name="name">device.inspection.search</field>
         <field name="model">device.inspection</field>
+        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Device Inspections">
                 <field name="name"/>

@@ -51,7 +51,7 @@
                 <page string="Inspections" name="inspections" 
                       attrs="{'invisible': [('inspection_count', '=', 0)]}">
                     <field name="inspection_ids" readonly="1">
-                        <tree decoration-info="state == 'draft'"
+                        <list decoration-info="state == 'draft'"
                               decoration-warning="state == 'in_progress'"
                               decoration-success="state == 'approved'"
                               decoration-danger="state == 'rejected'"
@@ -63,7 +63,7 @@
                             <field name="overall_condition"/>
                             <field name="state" widget="badge"/>
                             <field name="pass_rate" widget="percentage"/>
-                        </tree>
+                        </list>
                         <form>
                             <sheet>
                                 <div class="oe_title">

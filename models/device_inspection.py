@@ -105,18 +105,18 @@ class DeviceInspection(models.Model):
         store=True,
         readonly=True
     )
-    # current_custody_id = fields.Many2one(
-    #     related='property_id.current_custody_id',
-    #     string='Current Custody',
-    #     store=True,
-    #     readonly=True
-    # )
-    # current_user_id = fields.Many2one(
-    #     related='property_id.current_custody_id.employee_id.user_id',
-    #     string='Current User',
-    #     store=True,
-    #     readonly=True
-    # )
+    current_custody_id = fields.Many2one(
+        related='property_id.current_custody_id',
+        string='Current Custody',
+        store=True,
+        readonly=True
+    )
+    current_user_id = fields.Many2one(
+        related='property_id.current_custody_id.employee_id.user_id',
+        string='Current User',
+        store=True,
+        readonly=True
+    )
     
     # Computed fields
     line_count = fields.Integer(
