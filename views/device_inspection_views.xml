@@ -114,7 +114,7 @@
     <record id="action_inspection_types_list" model="ir.actions.act_window">
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="device_inspection_type_view_tree"/>
         <field name="target">current</field>
         <field name="context">{}</field>
@@ -134,7 +134,7 @@
     <record id="action_device_inspection_type" model="ir.actions.act_window">
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="device_inspection_type_view_tree"/>
         <field name="target">current</field>
         <field name="context">{}</field>
