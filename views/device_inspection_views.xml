@@ -99,8 +99,7 @@
     <record id="action_device_inspection_type" model="ir.actions.act_window">
         <field name="name">Inspection Types</field>
         <field name="res_model">device.inspection.type</field>
-        <field name="view_mode">form,kanban,list</field>
-        <field name="view_id" ref="device_inspection_type_view_form"/>
+        <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first inspection type!
@@ -109,6 +108,11 @@
                 Define different types of inspections such as "End of Term Check", 
                 "Renewal Check", or "Return Inspection".
             </p>
+        </field>
+        <field name="views">
+            [(ref('device_inspection_type_view_form'), 'form'), 
+             (ref('device_inspection_type_view_kanban'), 'kanban'), 
+             (ref('device_inspection_type_view_tree'), 'list')]
         </field>
     </record>
 
@@ -398,9 +402,7 @@
     <record id="action_device_inspection" model="ir.actions.act_window">
         <field name="name">Device Inspections</field>
         <field name="res_model">device.inspection</field>
-        <field name="view_mode">form,kanban,list</field>
-        <field name="view_id" ref="device_inspection_view_form"/>
-        <field name="context">{'search_default_my_inspections': 1}</field>
+        <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first device inspection!
@@ -409,6 +411,11 @@
                 Start inspecting devices to track their condition and ensure quality control
                 for your asset management system.
             </p>
+        </field>
+        <field name="views">
+            [(ref('device_inspection_view_form'), 'form'), 
+             (ref('device_inspection_view_kanban'), 'kanban'), 
+             (ref('device_inspection_view_tree'), 'list')]
         </field>
     </record>
 
