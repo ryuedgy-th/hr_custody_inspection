@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View for Inspection Wizard -->
+    <record id="inspection_wizard_view_form" model="ir.ui.view">
+        <field name="name">inspection.wizard.form</field>
+        <field name="model">inspection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Inspection">
+                <sheet>
+                    <group>
+                        <field name="property_id" 
+                               options="{'no_create': True}"
+                               readonly="context.get('property_id', False)"/>
+                        <field name="inspection_type_id" 
+                               options="{'no_create': True}"/>
+                        <field name="notes" placeholder="Add initial notes for the inspection..."/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_create_inspection" 
+                            string="Create" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Inspection Wizard -->
+    <record id="action_inspection_wizard" model="ir.actions.act_window">
+        <field name="name">Create Inspection</field>
+        <field name="res_model">inspection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="inspection_wizard_view_form"/>
+    </record>
+</odoo> 
