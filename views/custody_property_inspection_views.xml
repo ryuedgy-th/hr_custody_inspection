@@ -93,4 +93,47 @@
             </xpath>
         </field>
     </record>
+    
+    <!-- Add Inspection data to Simple Form View's Maintenance Tab -->
+    <record id="custody_property_view_form_simple_inspection" model="ir.ui.view">
+        <field name="name">custody.property.form.simple.inspection</field>
+        <field name="model">custody.property</field>
+        <field name="inherit_id" ref="hr_custody.custody_property_view_form_simple"/>
+        <field name="arch" type="xml">
+            <!-- Add inspection data to Maintenance Information tab -->
+            <xpath expr="//page[@name='maintenance_info']" position="inside">
+                <group string="Inspection History" attrs="{'invisible': [('inspection_count', '=', 0)]}">
+                    <field name="inspection_count" invisible="1"/>
+                    <field name="last_inspection_date"/>
+                    <field name="last_inspection_state" widget="badge"/>
+                    <button name="action_view_inspections" 
+                            string="View Inspections" 
+                            type="object" 
+                            class="btn btn-primary"
+                            attrs="{'invisible': [('inspection_count', '=', 0)]}"/>
+                    <button name="action_create_inspection" 
+                            string="Create Inspection" 
+                            type="object" 
+                            class="btn btn-secondary"/>
+                </group>
+                
+                <field name="inspection_ids" 
+                       attrs="{'invisible': [('inspection_count', '=', 0)]}" 
+                       readonly="1">
+                    <list decoration-info="state == 'draft'"
+                          decoration-warning="state == 'in_progress'"
+                          decoration-success="state == 'approved'"
+                          decoration-danger="state == 'rejected'"
+                          decoration-muted="state == 'completed'">
+                        <field name="name"/>
+                        <field name="inspection_type_id"/>
+                        <field name="inspection_date"/>
+                        <field name="overall_condition"/>
+                        <field name="state" widget="badge"/>
+                        <field name="pass_rate" widget="percentage"/>
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
 </odoo>
