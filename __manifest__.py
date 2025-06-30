@@ -47,6 +47,11 @@ Technical Features:
         # Wizard views
         'wizard/inspection_multi_images_upload_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'hr_custody_inspection/static/src/scss/inspection.scss',
+        ],
+    },
     'demo': [],
     'images': ['static/description/banner.jpg'],
     'license': 'LGPL-3',
